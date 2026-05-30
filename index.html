@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K & M — Premium Streetwear</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0a0a0a;--white:#f5f3ee;--accent:#e8c547;--gray:#161616;--card:#1a1a1a;--muted:#777;--border:#242424}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 48px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--black);z-index:100}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.08em;cursor:pointer}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:8px}
+.nav-btn{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;padding:8px 14px;border-radius:2px;transition:color .2s,background .2s}
+.nav-btn:hover,.nav-btn.active{color:var(--white);background:#1e1e1e}
+.nav-btn.active{color:var(--accent)}
+.ig-btn{background:var(--accent);color:var(--black);font-weight:500;border-radius:2px;padding:8px 16px}
+.ig-btn:hover{opacity:.85;color:var(--black)}
+
+/* HERO */
+.hero{padding:80px 48px 64px;border-bottom:1px solid var(--border)}
+.hero-tag{display:inline-block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);padding:4px 12px;border-radius:2px;margin-bottom:24px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,9vw,110px);line-height:.95;letter-spacing:.02em;margin-bottom:24px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:15px;color:var(--muted);max-width:460px;margin-bottom:36px;line-height:1.8}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:var(--black);border:none;padding:13px 30px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:opacity .2s,transform .15s;text-decoration:none;display:inline-block}
+.btn-primary:hover{opacity:.85;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--white);border:1px solid var(--border);padding:13px 30px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:border-color .2s,transform .15s;text-decoration:none;display:inline-block}
+.btn-outline:hover{border-color:#555;transform:translateY(-1px)}
+
+/* TABS */
+.tabs-wrap{padding:0 48px;border-bottom:1px solid var(--border);display:flex;gap:0}
+.tab{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;padding:18px 24px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;margin-bottom:-1px}
+.tab:hover{color:var(--white)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* PRODUCTS */
+.products-section{padding:48px 48px 72px}
+.section-info{margin-bottom:36px}
+.section-info h2{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:.04em;margin-bottom:6px}
+.section-info p{font-size:13px;color:var(--muted)}
+
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:2px}
+
+.product-card{background:var(--card);overflow:hidden;position:relative;cursor:pointer;transition:background .2s}
+.product-card:hover{background:#212121}
+.product-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:#222;position:relative;overflow:hidden}
+.product-img-placeholder{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,#1e1e1e 0%,#2a2a2a 50%,#1e1e1e 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);font-size:13px;letter-spacing:.05em}
+.product-img-placeholder .emoji{font-size:48px}
+.product-info{padding:16px 18px 20px}
+.product-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.05em;margin-bottom:4px}
+.product-price{font-size:16px;font-weight:500;color:var(--accent);margin-bottom:12px}
+.product-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px}
+
+/* SIZE SELECTOR */
+.sizes-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.sizes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.size-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;padding:5px 10px;cursor:pointer;border-radius:2px;transition:all .15s;min-width:36px;text-align:center}
+.size-btn:hover{border-color:#555;color:var(--white)}
+.size-btn.selected{border-color:var(--accent);color:var(--accent);background:rgba(232,197,71,.08)}
+
+.order-btn{width:100%;background:var(--accent);color:var(--black);border:none;padding:11px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:opacity .2s}
+.order-btn:hover{opacity:.85}
+
+/* BADGE */
+.badge{position:absolute;top:12px;left:12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:2px;font-weight:500}
+.badge-hot{background:var(--accent);color:var(--black)}
+.badge-new{background:#fff;color:#000}
+
+/* EMPTY */
+.tab-hidden{display:none}
+
+/* CONTACT / FOOTER */
+.contact-bar{background:var(--gray);padding:48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;border-top:1px solid var(--border)}
+.contact-bar h3{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.04em;margin-bottom:6px}
+.contact-bar p{font-size:14px;color:var(--muted)}
+.ig-big{background:var(--accent);color:var(--black);border:none;padding:14px 32px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:opacity .2s,transform .15s;text-decoration:none;display:inline-block}
+.ig-big:hover{opacity:.85;transform:translateY(-1px)}
+
+footer{padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border-top:1px solid var(--border)}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.08em}
+.footer-logo span{color:var(--accent)}
+footer p{font-size:12px;color:var(--muted)}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--accent);color:var(--black);padding:12px 20px;border-radius:2px;font-size:13px;font-weight:500;transform:translateY(80px);opacity:0;transition:all .3s;z-index:999;pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-tag{animation:fadeUp .4s ease both}
+.hero h1{animation:fadeUp .4s .08s ease both}
+.hero p{animation:fadeUp .4s .16s ease both}
+.hero-btns{animation:fadeUp .4s .24s ease both}
+
+@media(max-width:600px){
+  nav{padding:14px 20px}
+  .nav-links .nav-btn:not(.ig-btn){display:none}
+  .hero{padding:48px 20px 40px}
+  .tabs-wrap{padding:0 20px;overflow-x:auto}
+  .products-section{padding:32px 20px 48px}
+  .contact-bar{padding:32px 20px}
+  footer{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" onclick="showTab('koszulki')">K <span>&</span> M</div>
+  <div class="nav-links">
+    <button class="nav-btn" onclick="showTab('koszulki')">Koszulki</button>
+    <button class="nav-btn" onclick="showTab('bluzy')">Bluzy</button>
+    <button class="nav-btn" onclick="showTab('skarpetki')">Skarpetki</button>
+    <a href="https://instagram.com/liveupload_torun" target="_blank" class="nav-btn ig-btn">📸 Instagram</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Premium Streetwear · Polska</div>
+  <h1>Noś to<br>co <em>najlepsze.</em></h1>
+  <p>Koszulki, bluzy, skarpetki — tylko najwyższa jakość. Dla tych, którzy nie idą na kompromis.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="showTab('koszulki')">Zobacz produkty</button>
+    <a href="https://instagram.com/liveupload_torun" target="_blank" class="btn-outline">Zamów na Instagramie</a>
+  </div>
+</section>
+
+<div class="tabs-wrap">
+  <button class="tab active" id="tab-koszulki" onclick="showTab('koszulki')">👕 Koszulki</button>
+  <button class="tab" id="tab-bluzy" onclick="showTab('bluzy')">🧥 Bluzy</button>
+  <button class="tab" id="tab-skarpetki" onclick="showTab('skarpetki')">🧦 Skarpetki</button>
+</div>
+
+<!-- KOSZULKI -->
+<div class="products-section" id="section-koszulki">
+  <div class="section-info">
+    <h2>Koszulki</h2>
+    <p>100% bawełna premium — miękka, trwała, idealnie skrojona.</p>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="badge badge-hot">Bestseller</div>
+      <div class="product-img-placeholder"><span class="emoji">👕</span><span>K&M Classic White</span></div>
+      <div class="product-info">
+        <div class="product-name">K&M Classic White</div>
+        <div class="product-price">89 zł</div>
+        <div class="product-desc">Klasyczna biała koszulka z logo K&M. Czysta bawełna, idealny krój.</div>
+        <div class="sizes-label">Rozmiar</div>
+        <div class="sizes">
+          <button class="size-btn" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+          <button class="size-btn" onclick="selectSize(this)">XL</button>
+        </div>
+        <button class="order-btn" onclick="orderOnIG('K&M Classic White')">Zamów na Instagramie →</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="badge badge-new">Nowość</div>
+      <div class="product-img-placeholder"><span class="emoji">👕</span><span>K&M Black Edition</span></div>
+      <div class="product-info">
+        <div class="product-name">K&M Black Edition</div>
+        <div class="product-price">89 zł</div>
+        <div class="product-desc">Czarna koszulka z subtelnym logo — minimalistyczna i elegancka.</div>
+        <div class="sizes-label">Rozmiar</div>
+        <div class="sizes">
+          <button class="size-btn" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+          <button class="size-btn" onclick="selectSize(this)">XL</button>
+        </div>
+        <button class="order-btn" onclick="orderOnIG('K&M Black Edition')">Zamów na Instagramie →</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-placeholder"><span class="emoji">👕</span><span>K&M Oversize</span></div>
+      <div class="product-info">
+        <div class="product-name">K&M Oversize</div>
+        <div class="product-price">99 zł</div>
+        <div class="product-desc">Luźny oversize krój, ciężka bawełna. Wygoda na co dzień.</div>
+        <div class="sizes-label">Rozmiar</div>
+        <div class="sizes">
+          <button class="size-btn" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+          <button class="size-btn" onclick="selectSize(this)">XL</button>
+        </div>
+        <button class="order-btn" onclick="orderOnIG('K&M Oversize')">Zamów na Instagramie →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BLUZY -->
+<div class="products-section tab-hidden" id="section-bluzy">
+  <div class="section-info">
+    <h2>Bluzy</h2>
+    <p>Grube, miękkie, zbudowane na zimę. Raz założysz — nie zdejmiesz.</p>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="badge badge-hot">Bestseller</div>
+      <div class="product-img-placeholder"><span class="emoji">🧥</span><span>K&M Hoodie Black</span></div>
+      <div class="product-info">
+        <div class="product-name">K&M Hoodie Black</div>
+        <div class="product-price">199 zł</div>
+        <div class="product-desc">Gruba bluza z kapturem. Miękka w środku, solidna na zewnątrz.</div>
+        <div class="sizes-label">Rozmiar</div>
+        <div class="sizes">
+          <button class="size-btn" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+          <button class="size-btn" onclick="selectSize(this)">XL</button>
+        </div>
+        <button class="order-btn" onclick="orderOnIG('K&M Hoodie Black')">Zamów na Instagramie →</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="badge badge-new">Nowość</div>
+      <div class="product-img-placeholder"><span class="emoji">🧥</span><span>K&M Hoodie Grey</span></div>
+      <div class="product-info">
+        <div class="product-name">K&M Hoodie Grey</div>
+        <div class="product-price">199 zł</div>
+        <div class="product-desc">Szara bluza premium — klasyk który zawsze pasuje do wszystkiego.</div>
+        <div class="sizes-label">Rozmiar</div>
+        <div class="sizes">
+          <button class="size-btn" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+          <button class="size-btn" onclick="selectSize(this)">XL</button>
+        </div>
+        <button class="order-btn" onclick="orderOnIG('K&M Hoodie Grey')">Zamów na Instagramie →</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-placeholder"><span class="emoji">🧥</span><span>K&M Crewneck</span></div>
+      <div class="product-info">
+        <div class="product-name">K&M Crewneck</div>
+        <div class="product-price">179 zł</div>
+        <div class="product-desc">Bluza bez kaptura — minimalistyczna, wygodna, na każdą okazję.</div>
+        <div class="sizes-label">Rozmiar</div>
+        <div class="sizes">
+          <button class="size-btn" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+          <button class="size-btn" onclick="selectSize(this)">XL</button>
+        </div>
+        <button class="order-btn" onclick="orderOnIG('K&M Crewneck')">Zamów na Instagramie →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SKARPETKI -->
+<div class="products-section tab-hidden" id="section-skarpetki">
+  <div class="section-info">
+    <h2>Skarpetki</h2>
+    <p>Nie śpij na skarpetkach. Wygodne, trwałe, zawsze świeże.</p>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="badge badge-hot">Hit</div>
+      <div class="product-img-placeholder"><span class="emoji">🧦</span><span>K&M Socks Pack x3</span></div>
+      <div class="product-info">
+        <div class="product-name">K&M Socks Pack x3</div>
+        <div class="product-price">49 zł</div>
+        <div class="product-desc">Zestaw 3 par skarpetek premium. Czarne, białe, szare — klasyk.</div>
+        <div class="sizes-label">Rozmiar</div>
+        <div class="sizes">
+          <button class="size-btn" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+          <button class="size-btn" onclick="selectSize(this)">XL</button>
+        </div>
+        <button class="order-btn" onclick="orderOnIG('K&M Socks Pack x3')">Zamów na Instagramie →</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-placeholder"><span class="emoji">🧦</span><span>K&M Logo Socks</span></div>
+      <div class="product-info">
+        <div class="product-name">K&M Logo Socks</div>
+        <div class="product-price">29 zł</div>
+        <div class="product-desc">Pojedyncza para z logo K&M. Wysoka jakość, nie tracą kształtu.</div>
+        <div class="sizes-label">Rozmiar</div>
+        <div class="sizes">
+          <button class="size-btn" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+          <button class="size-btn" onclick="selectSize(this)">XL</button>
+        </div>
+        <button class="order-btn" onclick="orderOnIG('K&M Logo Socks')">Zamów na Instagramie →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="contact-bar">
+  <div>
+    <h3>Zamów przez Instagram</h3>
+    <p>Napisz do nas — odpowiadamy szybko. Płatność BLIK lub kartą.</p>
+  </div>
+  <a href="https://instagram.com/liveupload_torun" target="_blank" class="ig-big">📸 Napisz do nas</a>
+</div>
+
+<footer>
+  <div class="footer-logo">K <span>&</span> M</div>
+  <p>© 2026 K & M — Premium Streetwear. Wszelkie prawa zastrzeżone.</p>
+</footer>
+
+<div class="toast" id="toast">✓ Otwieramy Instagram!</div>
+
+<script>
+function showTab(name) {
+  ['koszulki','bluzy','skarpetki'].forEach(t => {
+    document.getElementById('section-' + t).classList.toggle('tab-hidden', t !== name);
+    document.getElementById('tab-' + t).classList.toggle('active', t === name);
+  });
+  document.querySelector('.products-section:not(.tab-hidden)').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function selectSize(btn) {
+  const sizes = btn.closest('.sizes').querySelectorAll('.size-btn');
+  sizes.forEach(s => s.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function orderOnIG(product) {
+  const selectedSize = event.target.closest('.product-info').querySelector('.size-btn.selected');
+  const size = selectedSize ? selectedSize.textContent : '';
+  const msg = size
+    ? `Cześć! Chcę zamówić: ${product}, rozmiar ${size} 🙏`
+    : `Cześć! Chcę zamówić: ${product} 🙏`;
+  window.open('https://instagram.com/liveupload_torun', '_blank');
+  showToast();
+}
+
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+</script>
+</body>
+</html>
