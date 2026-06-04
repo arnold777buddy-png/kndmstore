@@ -134,6 +134,8 @@ footer p{font-size:12px;color:var(--muted)}
   <button class="tab active" id="tab-koszulki" onclick="showTab('koszulki')">👕 Koszulki</button>
   <button class="tab" id="tab-bluzy" onclick="showTab('bluzy')">🧥 Bluzy</button>
   <button class="tab" id="tab-skarpetki" onclick="showTab('skarpetki')">🧦 Skarpetki</button>
+  <button class="tab" id="tab-czapki" onclick="showTab('czapki')">🧢 Czapki</button>
+  
 </div>
 
 <!-- KOSZULKI -->
@@ -309,6 +311,32 @@ footer p{font-size:12px;color:var(--muted)}
 
   </div>
 </div>
+  <!-- CZAPKI -->
+<div class="products-section tab-hidden" id="section-czapki">
+  <div class="section-info">
+    <h2>Czapki</h2>
+    <p>Klasyczne czapki z daszkiem z logo K&M.</p>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="badge badge-new">Nowość</div>
+      <div class="product-img-placeholder"><span class="emoji">🧢</span><span>K&M Classic Cap</span></div>
+      <div class="product-info">
+        <div class="product-name">K&M Classic Cap</div>
+        <div class="product-price">79 zł</div>
+        <div class="product-desc">Klasyczna czapka z daszkiem z logo K&M. Regulowany pasek — pasuje na każdą głowę.</div>
+        <div class="sizes-label">Rozmiar</div>
+        <div class="sizes">
+          <button class="size-btn" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn" onclick="selectSize(this)">L</button>
+          <button class="size-btn" onclick="selectSize(this)">XL</button>
+        </div>
+        <button class="order-btn" onclick="orderOnIG('K&M Classic Cap')">Zamów na Instagramie →</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="contact-bar">
   <div>
@@ -327,7 +355,7 @@ footer p{font-size:12px;color:var(--muted)}
 
 <script>
 function showTab(name) {
-  ['koszulki','bluzy','skarpetki'].forEach(t => {
+  ['koszulki','bluzy','skarpetki','czapki'].forEach(t => {
     document.getElementById('section-' + t).classList.toggle('tab-hidden', t !== name);
     document.getElementById('tab-' + t).classList.toggle('active', t === name);
   });
